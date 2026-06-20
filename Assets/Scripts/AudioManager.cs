@@ -28,8 +28,15 @@ public class AudioManager : MonoBehaviour
 
     public void UpdateVolumes(float musicVolume, float sfxVolume)
     {
-        musicSource.volume = musicVolume;
-        sfxSource.volume = sfxVolume;
+        if (musicSource != null)
+        {
+            musicSource.volume = musicVolume;
+        }
+
+        if (sfxSource != null)
+        {
+            sfxSource.volume = sfxVolume;
+        }
     }
 
     public void PlaySFX(AudioClip clip)
