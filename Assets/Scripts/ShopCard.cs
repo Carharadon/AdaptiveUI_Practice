@@ -1,40 +1,52 @@
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+using TMPro;
 
 public class ShopCard : MonoBehaviour
 {
-    [Header("Настройки товара")]
-    public int price = 150;
+    [Header("Settings")]
+    public int price = 500;
     public string fullDescriptionText = "Меч. Даёт +25 к урону и +10 к силе."; 
 
-    [Header("Ссылки на элементы карточки")]
+    [Header("UI Elements")]
     public Button buyButton;
+    public Text coinsText;
 
-    [Header("Ссылки на всплывающее окно деталей")]
+    [Header("Details Popup Settings")]
     public GameObject detailPopup;
-    public Text detailText;
+    public TMP_Text detailText;
 
     void Update()
     {
-        GameHUD hud = Object.FindFirstObjectByType<GameHUD>();
-
-        if (hud != null)
+        if (coinsText != null && buyButton != null)
         {
-            if (hud.coins >= price)
+            int currentCoins = 0;
+            string textValue = coinsText.text;
+            textValue = System.Text.RegularExpressions.Regex.Replace(textValue, @"[^\d]", "");
+
+            if (int.TryParse(textValue, out currentCoins))
             {
-                buyButton.interactable = true;
-            }
-            else
-            {
-                buyButton.interactable = false;
+                if (currentCoins < price)
+                {
+                    buyButton.interactable = false;
+                }
+                else
+                {
+                    buyButton.interactable = true;
+                }
             }
         }
     }
 
     public void OpenDetails()
     {
-        detailPopup.SetActive(true);
+        if (detailPopup == null) return;
 
-        detailText.text = fullDescriptionText;
+        detailPopup.SetActive(true);
+        if (detailText != null) detailText.text = fullDescriptionText;
+
+        detailPopup.transform.localScale = Vector3.zero;
+        detailPopup.transform.DOScale(Vector3.one, 0.3f).SetEase(Ease.OutBack);
     }
 }

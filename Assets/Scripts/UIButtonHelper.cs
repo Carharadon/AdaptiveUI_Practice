@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems; 
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class UIButtonHelper : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
@@ -13,18 +14,31 @@ public class UIButtonHelper : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     [Header("Audio")]
     public AudioClip clickSound;
 
+    private Button mainButton;
+
+    void Awake()
+    {
+        mainButton = GetComponent<Button>();
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (mainButton != null && !mainButton.interactable) return;
+        
         transform.DOScale(hoverScale, duration);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        if (mainButton != null && !mainButton.interactable) return;
+        
         transform.DOScale(normalScale, duration);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (mainButton != null && !mainButton.interactable) return;
+
         transform.DOScale(clickScale, duration / 2f).OnComplete(() =>
         {
             transform.DOScale(hoverScale, duration / 2f);
