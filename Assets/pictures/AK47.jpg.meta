@@ -199,22 +199,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-<<<<<<< HEAD
     nameFileIdTable:
       AK47_0: 8271715202566429118
-=======
-<<<<<<< HEAD
-<<<<<<< HEAD
-    nameFileIdTable:
-      AK47_0: 8271715202566429118
-=======
-    nameFileIdTable: {}
->>>>>>> 76b6172720cb2225b4ce8bf9a058f10ca6185374
->>>>>>> f8287edfab58eb8c5aaa55aa15b5affd2cfc4c70
-=======
-    nameFileIdTable: {}
->>>>>>> 76b6172720cb2225b4ce8bf9a058f10ca6185374
->>>>>>> f8287edfab58eb8c5aaa55aa15b5affd2cfc4c70
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
